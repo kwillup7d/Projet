@@ -19,6 +19,7 @@ public:
     virtual int lancerDe();
     virtual bool caseLibre(Case*);
     virtual Case* avancerPion(Case*, int);
+    virtual bool estEnFin(Case*);
 protected:
     int nombrecases;
     Case* cases;
