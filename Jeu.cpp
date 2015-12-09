@@ -8,7 +8,7 @@
 #include "Jeu.h"
 #include <iostream>
 
-Jeu::Jeu(int cases) : plateau(cases), Tabjoueur(nullptr){
+Jeu::Jeu(int cases) : plateau(cases), Tabjoueur(new list<Joueur*>){
 }
 
 Jeu::Jeu(const Jeu& orig) {
@@ -39,17 +39,17 @@ void Jeu::initialisation(){
     }
     while(pions<1);
     
-    Tabjoueur = new Joueur[joueurs];
-    
     for(int i=0;i<joueurs-robots;i++){
-        Tabjoueur[i] = new Humain(pions);
+        Humain h = new Humain(pions);
+        Tabjoueur.push_back(&h);
     }
     for(int i=joueurs-robots; i<joueurs; i++){
-        Tabjoueur[i] = new Robot(pions);
+        Robot r(pions);
+        Tabjoueur.push_back(&r);
     }
-    for(int i=0;i<joueurs;i++){
+    for(list<Joueur*>::iterator it=Tabjoueur.begin();it!=Tabjoueur.end();it++){
         for(int j=0; j<pions;j++){
-            placementpions.insert(pair<pair<int,int>, Case*>((Tabjoueur[i].getNumeroJoueur(),j+1),plateau.getCase(1)));
+            placementpions.insert(pair<pair<int,int>, Case*>(((*it)->getNumeroJoueur(),j+1),plateau.getCase(1)));
         }
     }
     
@@ -65,23 +65,7 @@ bool Jeu::joueurAGagne(Joueur* j){
     return b;
 }
 
-void Jeu::tourJoueur(Humain* j){
-    j->setJouer(j->getJouer()+1);
-    while(j->getJouer()>0 && !joueurAGagne(j)){
-        int choix = j->choixPions();
-        int lancer = plateau.lancerDe();
-        while(choix<1 || choix>j->getNombrePions()){
-            choix = j->choixPions();
-        }
-        Case* tmp = plateau.avancerPion(placementpions.find((j->getNumeroJoueur(),choix))->second, lancer);
-        placementpions.erase(placementpions.find((j->getNumeroJoueur(),choix)));
-        placementpions.insert(make_pair((j->getNumeroJoueur(),choix),tmp));
-        
-        j->setJouer(j->getJouer() - 1 + tmp->getJouer());
-    }
-}
-
-void Jeu::tourJoueur(Robot* j){
+void Jeu::tourJoueur(Joueur* j){
     j->setJouer(j->getJouer()+1);
     while(j->getJouer()>0 && !joueurAGagne(j)){
         int choix = j->choixPions();
@@ -97,7 +81,16 @@ void Jeu::tourJoueur(Robot* j){
 }
 
 void Jeu::jouer(){
-    
-    while()
+    bool jeufini = false;
+    while(!jeufini){
+        list<Joueur*>::iterator it = Tabjoueur.begin();
+        while(it!=Tabjoueur.end() && !jeufini){
+            tourJoueur(*it);
+            if(tourJoueur(*it)){
+                jeufini = true;
+            }
+            it++;
+        }
+    }
 }
 
