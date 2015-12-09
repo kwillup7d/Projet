@@ -6,8 +6,6 @@
  */
 
 #include "Jeu.h"
-#include "Humain.h"
-#include "Robot.h"
 #include <iostream>
 
 Jeu::Jeu(int cases) : plateau(cases), Tabjoueur(nullptr){
@@ -57,11 +55,49 @@ void Jeu::initialisation(){
     
 }
 
-void Jeu::joueurAGagne(Joueur* j){
-    
+bool Jeu::joueurAGagne(Joueur* j){
+    bool b = true;
+    int i = 1;
+    while(i<j->getNombrePions()+1 && b){
+        b = plateau.estEnFin(placementpions.find((j->getNumeroJoueur(),i))->second);
+        i++;
+    }
+    return b;
+}
+
+void Jeu::tourJoueur(Humain* j){
+    j->setJouer(j->getJouer()+1);
+    while(j->getJouer()>0 && !joueurAGagne(j)){
+        int choix = j->choixPions();
+        int lancer = plateau.lancerDe();
+        while(choix<1 || choix>j->getNombrePions()){
+            choix = j->choixPions();
+        }
+        Case* tmp = plateau.avancerPion(placementpions.find((j->getNumeroJoueur(),choix))->second, lancer);
+        placementpions.erase(placementpions.find((j->getNumeroJoueur(),choix)));
+        placementpions.insert(make_pair((j->getNumeroJoueur(),choix),tmp));
+        
+        j->setJouer(j->getJouer() - 1 + tmp->getJouer());
+    }
+}
+
+void Jeu::tourJoueur(Robot* j){
+    j->setJouer(j->getJouer()+1);
+    while(j->getJouer()>0 && !joueurAGagne(j)){
+        int choix = j->choixPions();
+        int lancer = plateau.lancerDe();
+        while(choix<1 || choix>j->getNombrePions()){
+            choix = j->choixPions();
+        }
+        Case* tmp = plateau.avancerPion(placementpions.find((j->getNumeroJoueur(),choix))->second, lancer);
+        placementpions.erase(placementpions.find((j->getNumeroJoueur(),choix)));
+        placementpions.insert(make_pair((j->getNumeroJoueur(),choix),tmp));
+        j->setJouer(j->getJouer() - 1 + tmp->getJouer());
+    }
 }
 
 void Jeu::jouer(){
     
+    while()
 }
 
