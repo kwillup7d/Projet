@@ -10,6 +10,8 @@
 #include <list>
 #include <map>
 #include "Joueur.h"
+#include "Humain.h"
+#include "Robot.h"
 #include "Plateau.h"
 
 using namespace std;
@@ -22,10 +24,12 @@ public:
     virtual ~Jeu();
     void initialisation();
     void jouer();
+    void tourJoueur(Humain*);
+    void tourJoueur(Robot*);
     bool joueurAGagne(Joueur*);
 protected:
     Plateau plateau;
-    Joueur* Tabjoueur;
+    list<Joueur*> Tabjoueur;
     multimap<multimap<int,int>,Case*> placementpions;
 };
 
