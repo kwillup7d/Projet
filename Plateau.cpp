@@ -36,6 +36,10 @@ bool Plateau::caseLibre(Case* c){
     else return true;
 }
 
+bool Plateau::estEnFin(Case* c){
+    return c==cases[nombrecases];
+}
+
 Case* Plateau::avancerPion(Case* c, int lancer){
     if(!(caseLibre(c+lancer))){
         return cases[0];
