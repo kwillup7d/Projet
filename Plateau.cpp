@@ -7,10 +7,11 @@
 
 #include "Plateau.h"
 
-Plateau::Plateau(int n) : nombrecases(n), cases(new Case[n]){
-}
-
-Plateau::Plateau(const Plateau& orig) {
+Plateau::Plateau(int n) : nombrecases(n), cases(new Case*[n]){
+    for(int i=0; i<n; i++){
+        Case c();
+        cases[i] = &c;
+    }
 }
 
 Plateau::~Plateau() {
@@ -22,7 +23,7 @@ int Plateau::getNombreCases(){
 }
 
 Case* Plateau::getCase(int i){
-    return &cases[i-1];
+    return cases[i-1];
 }
 
 int Plateau::lancerDe(){
@@ -47,7 +48,7 @@ Case* Plateau::avancerPion(Case* c, int lancer){
     else{
         Case* tmp = cases[0];
         if(c+lancer - cases > nombrecases){ //à vérifier
-            tmp = &cases[nombrecases-1 -( c + lancer - cases - nombrecases)];
+            tmp = cases[nombrecases-1 -( c + lancer - cases - nombrecases)];
         }
         else{
             tmp = c+lancer;
