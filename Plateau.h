@@ -12,7 +12,6 @@
 class Plateau {
 public:
     Plateau(int);
-    Plateau(const Plateau& orig);
     virtual ~Plateau();
     int getNombreCases();
     Case* getCase(int);
@@ -22,7 +21,7 @@ public:
     virtual bool estEnFin(Case*);
 protected:
     int nombrecases;
-    Case* cases;
+    Case** cases;
 
 };
 
