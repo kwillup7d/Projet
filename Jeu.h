@@ -17,12 +17,15 @@ using namespace std;
 //template <class T>
 class Jeu {
 public:
-    Jeu(int,int,int,int=1);
+    Jeu(int);
     Jeu(const Jeu& orig);
     virtual ~Jeu();
+    void initialisation();
+    void jouer();
+    bool joueurAGagne(Joueur*);
 protected:
     Plateau plateau;
-    Joueur* joueur;
+    Joueur* Tabjoueur;
     multimap<multimap<int,int>,Case*> placementpions;
 };
 
