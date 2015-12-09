@@ -10,7 +10,6 @@
 
 class Joueur {
 public:
-    Joueur(int);
     Joueur(const Joueur& orig);
     virtual ~Joueur();
     int getScore();
@@ -19,13 +18,15 @@ public:
     int getPion(int);
     void setJouer(int);
     int getNumeroJoueur();
+    virtual int choixPions()=0;
 protected:
+    int jouer;
     static int numerojoueur = 0;
     int score;
     int* pions;
     int nombrepions;
-    virtual int choixPions()=0;
-    int jouer;
+    Joueur(int=1);
+    
 };
 
 #endif	/* JOUEUR_H */
