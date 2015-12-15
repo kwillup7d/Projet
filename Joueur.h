@@ -7,25 +7,25 @@
 
 #ifndef JOUEUR_H
 #define	JOUEUR_H
+#include "plateau.h"
 
 class Joueur {
 public:
-    Joueur(const Joueur& orig);
     virtual ~Joueur();
     int getScore();
     int getNombrePions();
     int getJouer();
     int getPion(int);
     void setJouer(int);
-    int getNumeroJoueur();
+    virtual Case* avancerPion(Case*, int);
     virtual int choixPions()=0;
 protected:
     int jouer;
-    static int numerojoueur = 0;
     int score;
     int* pions;
+    Plateau* plateau;
     int nombrepions;
-    Joueur(int=1);
+    Joueur(Plateau*,int=1);
     
 };
 
