@@ -11,8 +11,7 @@
 
 class Humain : public Joueur {
 public:
-    Humain(int);
-    Humain(const Humain& orig);
+    Humain(Plateau*, int=1);
     virtual ~Humain();
     virtual int choixPions();
 private:
