@@ -11,8 +11,7 @@
 
 class Robot : public Joueur{
 public:
-    Robot(int);
-    Robot(const Robot& orig);
+    Robot(Plateau*,int=1);
     virtual ~Robot();
     virtual int choixPions();
 private:
