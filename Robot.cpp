@@ -6,22 +6,27 @@
  */
 
 #include "Robot.h"
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
-Robot::Robot(int n) : Joueur(n) {
-}
+using namespace std;
 
-Robot::Robot(const Robot& orig) {
+Robot::Robot(Plateau* pla,int n) : Joueur(pla, n) {
+    cout << "creation d'un robot" << endl;
 }
 
 Robot::~Robot() {
+    cout << "destruction d'un robot" << endl;
 }
 
-int* Robot::choixPions(){
+int Robot::choixPions(){
     int choix = 1;
     if(nombrepions == 1){
         return choix;
     }
     else{
-        return 2; //random
+        srand (time(NULL));
+        return (rand()%nombrepions + 1);
     }
 }
