@@ -2,16 +2,16 @@
  * File:   Jeu.h
  * Author: Bienvenue
  *
- * Created on 7 décembre 2015, 17:48
+ * Created on 11 décembre 2015, 20:02
  */
 
 #ifndef JEU_H
 #define	JEU_H
 #include <list>
+#include <utility>
 #include <map>
 #include "Joueur.h"
-#include "Humain.h"
-#include "Robot.h"
+#include "JoueurQuestion.h"
 #include "Plateau.h"
 
 using namespace std;
@@ -24,14 +24,12 @@ public:
     virtual ~Jeu();
     void initialisation();
     void jouer();
-    void tourJoueur(Humain*);
-    void tourJoueur(Robot*);
+    void tourJoueur(Joueur*);
     bool joueurAGagne(Joueur*);
 protected:
     Plateau plateau;
     list<Joueur*> Tabjoueur;
-    multimap<multimap<int,int>,Case*> placementpions;
+    multimap<pair<Joueur*,int>,Case*> placementpions;
 };
 
 #endif	/* JEU_H */
-
