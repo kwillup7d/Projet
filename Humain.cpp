@@ -10,13 +10,12 @@
 
 using namespace std;
 
-Humain::Humain(int n) : Joueur(n) {
-}
-
-Humain::Humain(const Humain& orig) {
+Humain::Humain(Plateau* pla, int n) : Joueur(pla,n) {
+    cout << "creation d'un humain" << endl;
 }
 
 Humain::~Humain() {
+    cout << "destruction d'un humain" << endl;
 }
 
 int Humain::choixPions(){
