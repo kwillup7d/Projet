@@ -11,13 +11,13 @@
 
 class Plateau {
 public:
-    Plateau(int);
+    Plateau(int=64);
     virtual ~Plateau();
     int getNombreCases();
     Case* getCase(int);
+    void setCase(int, Case*);
     virtual int lancerDe();
-    virtual bool caseLibre(Case*);
-    virtual Case* avancerPion(Case*, int);
+    //virtual Case* avancerPion(Case*, int);
     virtual bool estEnFin(Case*);
 protected:
     int nombrecases;
