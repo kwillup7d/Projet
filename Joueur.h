@@ -15,14 +15,13 @@ public:
     int getScore();
     int getNombrePions();
     int getJouer();
-    int getPion(int);
     void setJouer(int);
+    virtual int choixDeplacement();
     virtual Case* avancerPion(Case*, int);
     virtual int choixPions()=0;
 protected:
     int jouer;
     int score;
-    int* pions;
     Plateau* plateau;
     int nombrepions;
     Joueur(Plateau*,int=1);
