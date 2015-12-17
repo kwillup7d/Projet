@@ -14,19 +14,57 @@ using namespace std;
 
 Plateau::Plateau(int n) : nombrecases(n), cases(new Case*[n]){
     Case* c;
-    for(int i=0; i<n; i++){
+    srand (time(NULL));
+    int aleatoire=0;
+    char car;
+    
+    cases[0] = new Case('a',0,0,100,0);
+    for(int i=1; i<n-1; i++){
+        aleatoire = rand()%4;
+        switch(aleatoire){
+            case 0 : {
+                car = 'a';
+                break;
+            }
+            case 1 : {
+                car = 'b';
+                break;
+            }
+            case 2 : {
+                car = 'c';
+                break;
+            }
+            case 3: {
+                car = 'd';
+             break;
+            }
+        }
+        
         if(i%9 == 0){
-           c = new Case(0,-1,1);
+            //création des cases 'passer son tour'
+           c = new Case(car,0,-1,1,0);
         }
         else if(i%13 == 0)
         {
-            c = new Case(0,1,1);
+            //création des cases 'rejouer'
+            c = new Case(car,0,1,1,0);
+        }
+        else if(i%19 == 0){
+            //creation des cases 'serpent' qui envoie le pion sur une case entre 1 et i-7
+            aleatoire = 1 + rand()%(i-7);
+            c = new Case(car,0,0,1,aleatoire);
+        }
+        else if(i%17 == 0){
+            //creation des cases 'echelle' qui envoie le pion sur une case entre i+7 et nombrecases-2
+            aleatoire = i + 7 + rand()%(nombrecases-9-i);
+            c = new Case(car,0,0,1,aleatoire);
         }
         else {
-            c = new Case();
+            c = new Case(car);
         }
         cases[i] = c;
     }
+    cases[n-1] = new Case('a',0,0,100,0);
     cout << "création du tableau" << endl;
 }
 
@@ -47,50 +85,9 @@ void Plateau::setCase(int i, Case* c){
     cases[i] = c;
 }
 
-int Plateau::lancerDe(){
-    srand (time(NULL));
-    return (rand()%6 + 1);
-}
-
 bool Plateau::estEnFin(Case* c){
+    //on regarde si la case c est bien la dernière case
     return c->getNumeroCase()==nombrecases-1; // On vérifie si la case est bien la dernière du plateau.
 }
-
-/*Case* Plateau::avancerPion(Case* c, int lancer){
-    cout << "bouh " << endl;
-    Case* tmp = cases[0];
-    int numtmp = c->getNumeroCase() + lancer;
-    cout << c->getNumeroCase() << " c'est le plateau" << endl;
-    
-    if(numtmp > nombrecases - 1){ //Si on dépasse le nombre de cases autorisées, on recule 
-        cout << "bah" << endl;//à vérifier
-        numtmp = 2*(nombrecases -1) - (c->getNumeroCase() + lancer);
-        cout << "bah " << numtmp << endl;
-    }
-    
-    if(!(cases[numtmp]->caseEstLibre())){ // On vérifie si la case est libre, si elle ne l'est pas, on retourne au départ
-        return tmp;
-    }
-    else{
-        cout << "bih" << endl;
-        tmp = cases[numtmp];
-        cout << tmp->goTo() << endl;
-        
-        if(tmp->goTo()>0){ // Si on peut se téléporter, on se téléporte
-            if(!(tmp+(tmp->goTo()))->caseEstLibre()){ //Si la case liée n'est pas libre, retour case départ
-                return cases[0];
-            }
-            else {
-                tmp = cases[tmp->getNumeroCase() + tmp->goTo()]; // Sinon on y va
-                return tmp;
-            }
-        }
-        else {
-            cout << "boh" << endl;
-            return tmp; // Sinon on va juste à la case demandée 
-        }
-    }
-}
-*/
 
 
