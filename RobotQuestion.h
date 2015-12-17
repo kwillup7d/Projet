@@ -13,7 +13,7 @@ class RobotQuestion : public JoueurQuestion {
 public:
     RobotQuestion(Plateau* plateau, int=1);
     virtual ~RobotQuestion();
-    virtual int reponse();
+    virtual bool question();
     virtual int choixPions();
 private:
 
