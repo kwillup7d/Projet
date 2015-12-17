@@ -12,6 +12,7 @@
 #include <map>
 #include "Joueur.h"
 #include "JoueurQuestion.h"
+#include "JoueurCartagena.h"
 #include "Plateau.h"
 
 using namespace std;
@@ -29,7 +30,7 @@ public:
 protected:
     Plateau plateau;
     list<Joueur*> Tabjoueur;
-    multimap<pair<Joueur*,int>,Case*> placementpions;
+    map<pair<Joueur*,int>,Case*> placementpions;
 };
 
 #endif	/* JEU_H */
