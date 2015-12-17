@@ -13,7 +13,7 @@ class HumainQuestion : public JoueurQuestion {
 public:
     HumainQuestion(Plateau*, int=1);
     virtual ~HumainQuestion();
-    virtual int reponse();
+    virtual bool question();
     virtual int choixPions();
 private:
 
