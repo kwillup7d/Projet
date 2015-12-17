@@ -20,8 +20,13 @@ RobotQuestion::~RobotQuestion() {
     cout << "destruction robotquestion" << endl;
 }
 
-int RobotQuestion::reponse(){
-    return 2; // random
+bool RobotQuestion::question(){
+    srand (time(NULL));
+    int alea = rand() % 2;
+    switch(alea){
+        case 0 : return true;
+        case 1 : return false;
+    }
 }
 
 int RobotQuestion::choixPions(){
