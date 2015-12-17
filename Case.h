@@ -12,7 +12,7 @@ static int nbrecases = 0;
 
 class Case {
 public:
-    Case(int=0, int=0, int=1);
+    Case(char,int=0, int=0, int=1, int=0);
     Case(const Case& orig);
     virtual ~Case();
     int getNombrePions();
@@ -20,14 +20,16 @@ public:
     void setNombrePions(int);
     int getJouer();
     int getNumeroCase();
-    virtual int goTo();
+    int getLienCase();
+    char getSymbole();
     bool caseEstLibre();
-    virtual int question();
 protected:
     int nombrepions;
     int nombrepionsmax;
     int numerocase;
     int jouer;
+    int liencase;
+    char symbole;
 };
 
 #endif	/* CASE_H */
