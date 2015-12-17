@@ -7,6 +7,8 @@
 
 #include "HumainQuestion.h"
 #include <iostream>
+#include <stdlib.h>
+#include <time.h>
 
 using namespace std;
 
@@ -18,10 +20,37 @@ HumainQuestion::~HumainQuestion() {
     cout << "destruction humainquestion" << endl;
 }
 
-int HumainQuestion::reponse(){
-    int reponse;
-    cin>> reponse;
-    return reponse;
+bool HumainQuestion::question(){
+    srand (time(NULL));
+    int a = 2;//rand() % 100;
+    int b = 7; //rand () % 100;
+    int c = rand() % 4;
+    int result, reponse;
+    
+    switch(c){
+        case 0 : {
+            cout << "Quel est le résultat de bih " << a << "+" << b << endl;
+            result = a+b;
+            break;
+        }
+        case 1 : {
+            cout << "Quel est le résultat de bah " << a << "*" << b << endl;
+            result = a*b;
+            break;
+        }
+        case 2 : {
+            cout << "Quel est le résultat de boh " << a << "/" << b << endl;
+            result = a/b;
+            break;
+        }
+        case 3 : {
+            cout << "Quel est le résultat de buh " << a << "%" << b << endl;
+            result = a%b;
+            break;
+        }
+    }
+    cin >> reponse;
+    return reponse==result;
 }
 
 int HumainQuestion::choixPions(){
