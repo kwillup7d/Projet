@@ -13,7 +13,7 @@ class JoueurQuestion : public Joueur {
 public:
     JoueurQuestion(Plateau*, int=1);
     virtual ~JoueurQuestion();
-    virtual int reponse()=0;
+    virtual bool question()=0;
     virtual Case* avancerPion(Case*, int);
 private:
 
