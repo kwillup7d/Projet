@@ -22,30 +22,43 @@ Case* JoueurQuestion::avancerPion(Case* c, int lancer){
     Case* tmp = plateau->getCase(0);
     int numtmp = c->getNumeroCase() + lancer;
     
-    if(numtmp > plateau->getNombreCases() - 1){ //Si on dépasse le nombre de cases autorisées, on recule 
+    //Si on dépasse le nombre de cases autorisées, on recule 
+    if(numtmp > plateau->getNombreCases() - 1){ 
         numtmp = 2*(plateau->getNombreCases() -1) - (c->getNumeroCase() + lancer);
     }
     
-    if((plateau->getCase(numtmp)->caseEstLibre())){// On vérifie si la case est libre, si elle ne l'est pas, on retourne au départ
+    // On vérifie si la case est libre, si elle ne l'est pas, on retourne au départ
+    if((plateau->getCase(numtmp)->caseEstLibre())){
+        //si elle est libre, on va à la case demandée
         tmp = plateau->getCase(numtmp);
         
-        int question = tmp->question();
-        
-        if(reponse() == question){
-            if(tmp->goTo() > tmp->getNumeroCase()){// Si on peut se téléporter, on se téléporte //Si la case liée n'est pas libre, retour case départ
-                if(plateau->getCase(tmp->goTo())->caseEstLibre()){
-                    tmp = plateau->getCase(tmp->goTo()); // Sinon on y va
+        //on vérifie si le joueur a bon à la question
+        if(question()){
+            //si on est sur une case 'echelle', on monte
+            if(tmp->getLienCase() > tmp->getNumeroCase()){
+                //si la case n'est pas libre, on retourne au départ
+                if(plateau->getCase(tmp->getLienCase())->caseEstLibre()){
+                    tmp = plateau->getCase(tmp->getLienCase()); 
                 }
                 else {
                     tmp = plateau->getCase(0);
                 }
             }
         }
+        //si le joueur a tort
         else {
-            if(tmp->goTo() < tmp->getNumeroCase() && plateau->getCase(tmp->goTo())->caseEstLibre()){
-                tmp = plateau->getCase(tmp->goTo()); // Sinon on y va
+            //si le joueur est sur une case 'serpent', qui ne peut pas être la case départ, on descend
+            if(tmp->getLienCase() < tmp->getNumeroCase() && tmp->getLienCase()>0){
+                //si la case n'est pas libre, on retourne au départ
+                if(plateau->getCase(tmp->getLienCase())->caseEstLibre()){
+                    tmp = plateau->getCase(tmp->getLienCase());
+                }
+                else {
+                    tmp = plateau->getCase(0);
+                }
             }
             else {
+                //sinon, on retourne à la case initiale
                 tmp = c;
             }
         }
