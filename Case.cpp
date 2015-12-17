@@ -7,12 +7,10 @@
 
 #include "Case.h"
 #include <iostream>
-#include <stdlib.h>
-#include <time.h>
 
 using namespace std;
 
-Case::Case(int pion, int m, int max): nombrepions(pion), jouer(m), numerocase(nbrecases), nombrepionsmax(max) {
+Case::Case(char c, int pion, int m, int max, int lien): symbole(c), nombrepions(pion), jouer(m), numerocase(nbrecases), nombrepionsmax(max), liencase(lien) {
     nbrecases++;
 }
 
@@ -27,6 +25,10 @@ int Case::getNombrePions(){
     return nombrepions;
 }
 
+int Case::getNombrePionsMax(){
+    return nombrepionsmax;
+}
+
 void Case::setNombrePions(int i){
     nombrepions = i;
 }
@@ -39,33 +41,14 @@ int Case::getNumeroCase(){
     return numerocase;
 }
 
-int Case::getNombrePionsMax(){
-    return nombrepionsmax;
+int Case::getLienCase(){
+    return liencase;
+}
+
+char Case::getSymbole(){
+    return symbole;
 }
 
 bool Case::caseEstLibre(){
     return nombrepions<nombrepionsmax;
-}
-
-int Case::goTo(){
-    cout << "goto" << endl;
-    return 0;
-}
-
-int Case::question(){
-    srand (time(NULL));
-    int a = 2;//rand() % 1000;
-    int b = 7; //rand () % 1000;
-    int c = rand() % 4;
-    
-    switch(c){
-        case 0 : cout << "Quel est le résultat de " << a << "+" << b << endl;
-        return a+b;
-        case 1 : cout << "Quel est le résultat de " << a << "*" << b << endl;
-        return a*b;
-        case 2 : cout << "Quel est le résultat de " << a << "/" << b << endl;
-        return a/b;
-        case 3 : cout << "Quel est le résultat de " << a << "%" << b << endl;
-        return a%b;
-    }
 }
