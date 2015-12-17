@@ -16,8 +16,6 @@ public:
     int getNombreCases();
     Case* getCase(int);
     void setCase(int, Case*);
-    virtual int lancerDe();
-    //virtual Case* avancerPion(Case*, int);
     virtual bool estEnFin(Case*);
 protected:
     int nombrecases;
