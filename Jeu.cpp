@@ -10,7 +10,10 @@
 #include "Robot.h"
 #include "HumainQuestion.h"
 #include "RobotQuestion.h"
+#include "HumainCartagena.h"
+#include "RobotCartagena.h"
 #include <iostream>
+#include <string>
 
 Jeu::Jeu(int cases) : plateau(cases){
 }
@@ -46,14 +49,35 @@ void Jeu::initialisation(){
     while(pions<1);
     
     Joueur* j;
+    string joueur;
     
     for(int i=0;i<joueurs-robots;i++){
-        j = new HumainQuestion(&plateau,pions);
+        cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)" << endl;
+        cin >> joueur;
+        if(joueur == "normal"){
+            j = new Humain(&plateau,pions);
+        }
+        else if(joueur == "question"){
+            j = new HumainQuestion(&plateau,pions);
+        }
+        else {
+            j = new HumainCartagena(&plateau, 8, pions);
+        }
         Tabjoueur.push_back(j);
     }
     
     for(int i=joueurs-robots; i<joueurs; i++){
-        j = new RobotQuestion(&plateau,pions);
+        cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)" << endl;
+        cin >> joueur;
+        if(joueur == "normal"){
+            j = new Robot(&plateau,pions);
+        }
+        else if(joueur == "question"){
+            j = new RobotQuestion(&plateau,pions);
+        }
+        else {
+            j = new RobotCartagena(&plateau,8,pions);
+        }
         Tabjoueur.push_back(j);
     }
     
@@ -72,8 +96,10 @@ bool Jeu::joueurAGagne(Joueur* j){
     bool b = true;
     int i = 1;
     pair<Joueur*,int> tmp;
+    //on regarde si tous les pions du joueur sont en fin
     while((i<(j->getNombrePions())+1) && b){
         tmp = make_pair(j,i);
+        //si un pion n'est pas en fin, alors b = false et on sort de la boucle : le joueur n'a pas gagné
         b = plateau.estEnFin(placementpions.find(tmp)->second);
         i++;
     }
@@ -85,27 +111,38 @@ void Jeu::tourJoueur(Joueur* j){
     cout << "debut tour" << endl;
     Case* ct;
     Case* tmp;
+    //on rajoute un au compteur de jouer du joueur
     j->setJouer(j->getJouer()+1);
+    //s'il peut jouer et qu'il n'a pas gagné, on lance son tour
     while((j->getJouer())>0 && !joueurAGagne(j)){
         int choix = j->choixPions();
         pairetmp = make_pair(j,choix);
-        while(choix<0 || choix>j->getNombrePions() || plateau.estEnFin(placementpions.find(pairetmp)->second)){
+        //Le joueur fait son choix de pions et on vérifie que c'est vraiment un pion et qu'il n'est pas en fin
+        //Ici, le joueur peut choisir 0 s'il veut choisir après le lancer de dé
+        while(choix<0 || choix>j->getNombrePions() || (choix!=0 && plateau.estEnFin(placementpions.find(pairetmp)->second))){
             choix = j->choixPions();
-            pairetmp = make_pair(j,choix); //problème avec 0
+            pairetmp = make_pair(j,choix); 
         }
-        int lancer = plateau.lancerDe();
+        int lancer = j->choixDeplacement();
+        cout << "le lancer vaut " << lancer << endl;
+        //Si le joueur n'a toujours pas fait son choix, on lui redemande de choisir
         while(choix<1 || choix>j->getNombrePions() || plateau.estEnFin(placementpions.find(pairetmp)->second)){
             choix = j->choixPions();
             pairetmp = make_pair(j,choix);
         }
 
         ct = placementpions.find(pairetmp)->second;
+        //une fois la case du pions trouvée, on fait avancer le pion
         tmp = j->avancerPion(ct, lancer);
-        placementpions.find(pairetmp)->second->setNombrePions(placementpions.find(pairetmp)->second->getNombrePions()-1);
+        //on enlève un pion à l'ancienne case
+        ct->setNombrePions(ct->getNombrePions()-1);
+        //on supprime le lien entre pion et case pour créer le nouveau lien
         placementpions.erase(placementpions.find(pairetmp));
         placementpions.insert(make_pair(pairetmp,tmp));
+        //on rajoute un pion à la nouvelle case
         tmp->setNombrePions(tmp->getNombrePions()+1);
         cout << "le pion est à la case " << tmp->getNumeroCase() << endl;
+        cout << "peut-il rejouer ? " << j->getJouer() << endl;
     }
 }
 
@@ -113,10 +150,13 @@ void Jeu::jouer(){
     cout << "début du jeu" << endl;
     bool jeufini = false;
     list<Joueur*>::iterator it;
+    //tant que le jeu n'est pas fini, on recommence avec le premier joueur
     while(!jeufini){
         it = Tabjoueur.begin();
+        //tant que le jeu n'est pas fini, chaque joueur effectue son tour
         while(it!=Tabjoueur.end() && !jeufini){
             tourJoueur(*it);
+            //si le joueur courant a gagné, le jeu est fini
             if(joueurAGagne(*it)){
                 cout << "Un joueur a gagné" << endl;
                 jeufini = true;
