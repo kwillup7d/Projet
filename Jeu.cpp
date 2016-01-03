@@ -195,7 +195,7 @@ void Jeu::afficher(){
                     for (int k=0; k<((*it)->getNombrePions()+1); k++){
                 pairtmp = make_pair(*it,k);
                 if ((placementpions.find(pairtmp)->second)->getNumeroCase() == i ){
-                    cout <<(*it)->getSymbole() << " | ";
+                    cout <<(*it)->getSymbole()<< k << " | ";
                     }
  }
                     it++;
