@@ -14,7 +14,7 @@ using namespace std;
 
 class JoueurCartagena : public Joueur {
 public:
-    JoueurCartagena(Plateau*, int, int=1);
+    JoueurCartagena(Plateau*, int, int=1, char s);
     virtual ~JoueurCartagena();
     void rajouterUneCarte();
     virtual int choixPions()=0;
