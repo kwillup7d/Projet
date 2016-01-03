@@ -12,7 +12,7 @@
 
 using namespace std;
 
-RobotQuestion::RobotQuestion(Plateau* plateau, int pions):JoueurQuestion(plateau, pions) {
+RobotQuestion::RobotQuestion(Plateau* plateau, int pions, char s):JoueurQuestion(plateau, pions, s) {
     cout << "creation robotquestion" << endl;
 }
 
