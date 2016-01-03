@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   Jeu.cpp
  * Author: Bienvenue
- * 
+ *
  * Created on 7 décembre 2015, 17:48
  */
 
@@ -33,63 +33,68 @@ void Jeu::initialisation(){
         cin >> joueurs;
     }
     while(joueurs<1 || joueurs >4);
-    
+
     int robots = 1;
     do{
         cout << "Combien de robots voulez-vous ? (au plus " << joueurs << ")" << endl;
         cin >> robots;
     }
     while(robots<0 || robots > joueurs);
-    
+
     int pions = 1;
     do{
         cout << "Combien de pions voulez-vous par joueur ?" << endl;
         cin >> pions;
     }
     while(pions<1);
-    
+
     Joueur* j;
     string joueur;
-    
+    char s(72);
+
     for(int i=0;i<joueurs-robots;i++){
         cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)" << endl;
         cin >> joueur;
+        s++;
         if(joueur == "normal"){
-            j = new Humain(&plateau,pions);
+            j = new Humain(&plateau,pions,s);
         }
         else if(joueur == "question"){
-            j = new HumainQuestion(&plateau,pions);
+            j = new HumainQuestion(&plateau,pions,s);
         }
         else {
-            j = new HumainCartagena(&plateau, 8, pions);
+            j = new HumainCartagena(&plateau, 8, pions,s);
         }
+        cout << "Caractère joueur :" << s << endl;
         Tabjoueur.push_back(j);
     }
-    
+
     for(int i=joueurs-robots; i<joueurs; i++){
         cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)" << endl;
         cin >> joueur;
+        ++s;
         if(joueur == "normal"){
-            j = new Robot(&plateau,pions);
+            j = new Robot(&plateau,pions,s);
         }
         else if(joueur == "question"){
-            j = new RobotQuestion(&plateau,pions);
+            j = new RobotQuestion(&plateau,pions,s);
         }
         else {
-            j = new RobotCartagena(&plateau,8,pions);
+            j = new RobotCartagena(&plateau,8,pions,s);
         }
+        cout << "Caractère joueur :" << s << endl;
         Tabjoueur.push_back(j);
     }
-    
+
     pair<Joueur*,int> tmp;
-    
+
     for(list<Joueur*>::iterator it=Tabjoueur.begin();it!=Tabjoueur.end();it++){
         for(int j=1; j<pions+1;j++){
             tmp = make_pair(*it,j);
             placementpions.insert(pair<pair<Joueur*,int>, Case*>(tmp,plateau.getCase(0)));
         }
     }
-    
+
 }
 
 bool Jeu::joueurAGagne(Joueur* j){
@@ -108,6 +113,8 @@ bool Jeu::joueurAGagne(Joueur* j){
 
 void Jeu::tourJoueur(Joueur* j){
     pair<Joueur*,int> pairetmp;
+
+
     cout << "debut tour" << endl;
     Case* ct;
     Case* tmp;
@@ -121,7 +128,7 @@ void Jeu::tourJoueur(Joueur* j){
         //Ici, le joueur peut choisir 0 s'il veut choisir après le lancer de dé
         while(choix<0 || choix>j->getNombrePions() || (choix!=0 && plateau.estEnFin(placementpions.find(pairetmp)->second))){
             choix = j->choixPions();
-            pairetmp = make_pair(j,choix); 
+            pairetmp = make_pair(j,choix);
         }
         int lancer = j->choixDeplacement();
         cout << "le lancer vaut " << lancer << endl;
@@ -143,6 +150,11 @@ void Jeu::tourJoueur(Joueur* j){
         tmp->setNombrePions(tmp->getNombrePions()+1);
         cout << "le pion est à la case " << tmp->getNumeroCase() << endl;
         cout << "peut-il rejouer ? " << j->getJouer() << endl;
+
+        string k;
+        afficher();
+        cin >> k;
+        cout << k << endl;
     }
 }
 
@@ -164,5 +176,42 @@ void Jeu::jouer(){
             it++;
         }
     }
+}
+
+
+void Jeu::afficher(){
+
+    pair<Joueur*,int> pairtmp;
+
+    for (int i=0; i<plateau.getNombreCases();i++){
+
+        cout << i << " | " << plateau.getCase(i)->getSymbole() << " | ";
+
+
+            list<Joueur*>::iterator it;
+            it = Tabjoueur.begin();
+
+            while ( it!=Tabjoueur.end()){
+                    for (int k=0; k<((*it)->getNombrePions()+1); k++){
+                pairtmp = make_pair(*it,k);
+                if ((placementpions.find(pairtmp)->second)->getNumeroCase() == i ){
+                    cout <<(*it)->getSymbole() << " | ";
+                    }
+ }
+                    it++;
+
+
+
+    cout << endl;
+
+        }
+
+
+
+    }
+
+
+
+
 }
 
