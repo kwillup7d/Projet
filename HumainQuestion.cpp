@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   HumainQuestion.cpp
  * Author: Bienvenue
- * 
+ *
  * Created on 14 décembre 2015, 09:52
  */
 
@@ -12,7 +12,7 @@
 
 using namespace std;
 
-HumainQuestion::HumainQuestion(Plateau* plateau, int pions) : JoueurQuestion(plateau, pions) {
+HumainQuestion::HumainQuestion(Plateau* plateau, int pions, char s) : JoueurQuestion(plateau, pions, s) {
     cout << "creation humain question" << endl;
 }
 
@@ -26,7 +26,7 @@ bool HumainQuestion::question(){
     int b = 7; //rand () % 100;
     int c = rand() % 4;
     int result, reponse;
-    
+
     switch(c){
         case 0 : {
             cout << "Quel est le résultat de bih " << a << "+" << b << endl;
