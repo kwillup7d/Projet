@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   Humain.cpp
  * Author: Bienvenue
- * 
+ *
  * Created on 30 novembre 2015, 23:34
  */
 
@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Humain::Humain(Plateau* pla, int n) : Joueur(pla,n) {
+Humain::Humain(Plateau* pla, int n, char s) : Joueur(pla,n,s) {
     cout << "creation d'un humain" << endl;
 }
 
