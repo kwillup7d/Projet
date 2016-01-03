@@ -15,6 +15,7 @@ public:
     int getScore();
     int getNombrePions();
     int getJouer();
+    char getSymbole();
     void setJouer(int);
     virtual int choixDeplacement();
     virtual Case* avancerPion(Case*, int);
@@ -24,7 +25,8 @@ protected:
     int score;
     Plateau* plateau;
     int nombrepions;
-    Joueur(Plateau*,int=1);
+    char symbole;
+    Joueur(Plateau*,int=1, char = 65);
     
 };
 
