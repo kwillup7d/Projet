@@ -12,7 +12,7 @@
 
 using namespace std;
 
-Robot::Robot(Plateau* pla,int n) : Joueur(pla, n) {
+Robot::Robot(Plateau* pla,int n) : Joueur(pla, n,s) {
     cout << "creation d'un robot" << endl;
 }
 
