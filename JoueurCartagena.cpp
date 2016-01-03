@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-JoueurCartagena::JoueurCartagena(Plateau* plateau, int nombrecartes, int pions) : Joueur(plateau,pions){
+JoueurCartagena::JoueurCartagena(Plateau* plateau, int nombrecartes, int pions, char s) : Joueur(plateau,pions,s){
     srand(time(NULL));
     int aleatoire;
     
