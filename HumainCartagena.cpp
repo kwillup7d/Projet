@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   HumainCartagena.cpp
  * Author: Bienvenue
- * 
+ *
  * Created on 15 décembre 2015, 21:12
  */
 
@@ -10,7 +10,7 @@
 
 using namespace std;
 
-HumainCartagena::HumainCartagena(Plateau* plateau, int nombrecartes, int pions) : JoueurCartagena(plateau, nombrecartes, pions) {
+HumainCartagena::HumainCartagena(Plateau* plateau, int nombrecartes, int pions, char s) : JoueurCartagena(plateau, nombrecartes, pions, s) {
     cout << "creation humaincartagena" << endl;
 }
 
@@ -43,4 +43,3 @@ int HumainCartagena::choixDeplacement(){
     choix = (int)car;
     return choix;
 }
-
