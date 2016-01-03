@@ -11,7 +11,7 @@
 
 class Robot : public Joueur{
 public:
-    Robot(Plateau*,int=1);
+    Robot(Plateau*,int=1, char = 65);
     virtual ~Robot();
     virtual int choixPions();
 private:
