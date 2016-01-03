@@ -11,7 +11,7 @@
 
 class HumainQuestion : public JoueurQuestion {
 public:
-    HumainQuestion(Plateau*, int=1);
+    HumainQuestion(Plateau*, int=1, char = 65);
     virtual ~HumainQuestion();
     virtual bool question();
     virtual int choixPions();
