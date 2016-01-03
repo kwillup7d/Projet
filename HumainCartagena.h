@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   HumainCartagena.h
  * Author: Bienvenue
  *
@@ -11,7 +11,7 @@
 
 class HumainCartagena : public JoueurCartagena {
 public:
-    HumainCartagena(Plateau*, int, int=1);
+    HumainCartagena(Plateau*, int, int=1, char = 65);
     virtual ~HumainCartagena();
     virtual int choixPions();
     virtual int choixDeplacement();
