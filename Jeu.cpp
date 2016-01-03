@@ -202,11 +202,11 @@ void Jeu::afficher(){
 
 
 
-    cout << endl;
+
 
         }
 
-
+    cout << endl;
 
     }
 
