@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   JoueurCartagena.cpp
  * Author: Bienvenue
- * 
+ *
  * Created on 15 décembre 2015, 20:27
  */
 
@@ -13,12 +13,12 @@
 JoueurCartagena::JoueurCartagena(Plateau* plateau, int nombrecartes, int pions, char s) : Joueur(plateau,pions,s){
     srand(time(NULL));
     int aleatoire;
-    
+
     cartes.insert(pair<char,int>('a',0));
     cartes.insert(pair<char,int>('b',0));
     cartes.insert(pair<char,int>('c',0));
     cartes.insert(pair<char,int>('d',0));
-    
+
     int cartesrestantes = nombrecartes;
     while(cartesrestantes>0){
         aleatoire = rand()%4;
@@ -75,11 +75,13 @@ void JoueurCartagena::rajouterUneCarte(){
 
 Case* JoueurCartagena::avancerPion(Case* c, int symbole){
     Case* tmp = plateau->getCase(0);
-    int numcase = c->getNumeroCase()-1;
-    
+    int numcase = max(c->getNumeroCase()-1,0);
+
     if(symbole == 112){
-        while(plateau->getCase(numcase)->getNombrePions()<1 || plateau->getCase(numcase)->getNombrePions()>2 || numcase >0){
-            numcase--;
+
+        while((plateau->getCase(numcase)->getNombrePions()<1 || plateau->getCase(numcase)->getNombrePions()>2) && numcase >0){
+            --numcase;
+
         }
         tmp = plateau->getCase(numcase);
         tmp->setNombrePions(tmp->getNombrePions()+1);
@@ -93,19 +95,24 @@ Case* JoueurCartagena::avancerPion(Case* c, int symbole){
         (cartes.find(car)->second)--;
         numcase = c->getNumeroCase()+1;
         int nombrecases = plateau->getNombreCases();
-        while(!plateau->getCase(numcase)->caseEstLibre() || car!=plateau->getCase(numcase)->getSymbole()){
+        while((!plateau->getCase(numcase)->caseEstLibre() || car!=plateau->getCase(numcase)->getSymbole())&&numcase<nombrecases-1){
             numcase++;
         }
-        //if(numcase == nombrecases){
-        //tmp = avancerPion(c,0);
-        //}
-        //else {
+        if ( car != plateau->getCase(numcase)->getSymbole()){
+            numcase++;
+        }
+        if(numcase == nombrecases){
+
+                    tmp = c;
+
+        }
+        else {
             tmp = plateau->getCase(numcase);
             tmp->setNombrePions(tmp->getNombrePions()+1);
-        //}
+        }
     }
-    
-    
+
+
     jouer = jouer - 1 + tmp->getJouer();
     return tmp;
 }

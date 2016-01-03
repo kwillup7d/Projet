@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   Robot.cpp
  * Author: Bienvenue
- * 
+ *
  * Created on 30 novembre 2015, 23:36
  */
 
@@ -12,7 +12,7 @@
 
 using namespace std;
 
-Robot::Robot(Plateau* pla,int n, char s) : Joueur(pla, n,s) {
+Robot::Robot(Plateau* pla,int n, char s) : Joueur(pla, n, s) {
     cout << "creation d'un robot" << endl;
 }
 

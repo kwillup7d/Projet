@@ -50,29 +50,42 @@ void Jeu::initialisation(){
 
     Joueur* j;
     string joueur;
-    char s(72);
+    char s(64);
 
     for(int i=0;i<joueurs-robots;i++){
         cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)" << endl;
         cin >> joueur;
         s++;
+        while ( joueur != "normal" && joueur != "question" && joueur != "cartagena" ){
+
+            cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)"<< endl;
+            cin >> joueur;
+        }
         if(joueur == "normal"){
             j = new Humain(&plateau,pions,s);
         }
         else if(joueur == "question"){
             j = new HumainQuestion(&plateau,pions,s);
         }
-        else {
+        else if (joueur == "cartagena"){
             j = new HumainCartagena(&plateau, 8, pions,s);
         }
+
         cout << "Caractère joueur :" << s << endl;
         Tabjoueur.push_back(j);
+
+
     }
 
     for(int i=joueurs-robots; i<joueurs; i++){
         cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)" << endl;
         cin >> joueur;
         ++s;
+         while ( joueur != "normal" && joueur != "question" && joueur != "cartagena" ){
+
+            cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)"<< endl;
+            cin >> joueur;
+        }
         if(joueur == "normal"){
             j = new Robot(&plateau,pions,s);
         }
@@ -94,7 +107,7 @@ void Jeu::initialisation(){
             placementpions.insert(pair<pair<Joueur*,int>, Case*>(tmp,plateau.getCase(0)));
         }
     }
-
+    afficher();
 }
 
 bool Jeu::joueurAGagne(Joueur* j){
@@ -153,8 +166,9 @@ void Jeu::tourJoueur(Joueur* j){
 
         string k;
         afficher();
+        cout << "Entrez un mot pour continuer"<< endl;
         cin >> k;
-        cout << k << endl;
+
     }
 }
 
@@ -195,7 +209,7 @@ void Jeu::afficher(){
                     for (int k=0; k<((*it)->getNombrePions()+1); k++){
                 pairtmp = make_pair(*it,k);
                 if ((placementpions.find(pairtmp)->second)->getNumeroCase() == i ){
-                    cout <<(*it)->getSymbole()<< k << " | ";
+                    cout <<(*it)->getSymbole() << k << " | ";
                     }
  }
                     it++;
@@ -205,8 +219,8 @@ void Jeu::afficher(){
 
 
         }
+      cout << endl;
 
-    cout << endl;
 
     }
 
@@ -214,4 +228,6 @@ void Jeu::afficher(){
 
 
 }
+
+
 

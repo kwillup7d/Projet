@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   JoueurCartagena.h
  * Author: Bienvenue
  *
@@ -14,7 +14,7 @@ using namespace std;
 
 class JoueurCartagena : public Joueur {
 public:
-    JoueurCartagena(Plateau*, int, int=1, char s);
+    JoueurCartagena(Plateau*, int, int=1, char=65);
     virtual ~JoueurCartagena();
     void rajouterUneCarte();
     virtual int choixPions()=0;

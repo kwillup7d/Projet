@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   RobotCartagena.cpp
  * Author: Bienvenue
- * 
+ *
  * Created on 15 décembre 2015, 21:17
  */
 
@@ -12,7 +12,7 @@
 
 using namespace std;
 
-RobotCartagena::RobotCartagena(Plateau* plateau, int nombrecartes, int pions, char symbole) : JoueurCartagena(plateau, nombrecartes, pions, symbole){
+RobotCartagena::RobotCartagena(Plateau* plateau, int nombrecartes, int pions, char s) : JoueurCartagena(plateau, nombrecartes, pions, s){
     cout << "creation Robotcartagena" << endl;
 }
 
@@ -35,9 +35,9 @@ int RobotCartagena::choixDeplacement(){
     char car;
     int choix;
     int aleatoire;
-    
+
     srand (time(NULL));
-    while(car != 'p' || cartes.find(car)->second == 0){
+    while(car != 'p' && cartes.find(car)->second == 0){
         aleatoire = rand()%5;
         switch(aleatoire){
             case 0 : {
@@ -58,11 +58,12 @@ int RobotCartagena::choixDeplacement(){
             }
             case 4 : {
                     car = 'p';
-                break;           
+                break;
             }
         }
     }
     choix = (int)car;
+    cout << choix << endl;
     return choix;
 }
 

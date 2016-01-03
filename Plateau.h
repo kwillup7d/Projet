@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Plateau.h
  * Author: Bienvenue
  *
@@ -17,6 +17,7 @@ public:
     Case* getCase(int);
     void setCase(int, Case*);
     virtual bool estEnFin(Case*);
+
 protected:
     int nombrecases;
     Case** cases;

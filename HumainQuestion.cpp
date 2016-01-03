@@ -22,8 +22,8 @@ HumainQuestion::~HumainQuestion() {
 
 bool HumainQuestion::question(){
     srand (time(NULL));
-    int a = 2;//rand() % 100;
-    int b = 7; //rand () % 100;
+    int a = rand() % 10;
+    int b = 1 + rand() % 10;
     int c = rand() % 4;
     int result, reponse;
 
@@ -40,6 +40,7 @@ bool HumainQuestion::question(){
         }
         case 2 : {
             cout << "Quel est le résultat de boh " << a << "/" << b << endl;
+
             result = a/b;
             break;
         }

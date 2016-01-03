@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Jeu.h
  * Author: Bienvenue
  *
@@ -28,6 +28,7 @@ public:
     void tourJoueur(Joueur*);
     bool joueurAGagne(Joueur*);
     void afficher ();
+
 protected:
     Plateau plateau;
     list<Joueur*> Tabjoueur;

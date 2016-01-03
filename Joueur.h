@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Joueur.h
  * Author: Bienvenue
  *
@@ -15,19 +15,19 @@ public:
     int getScore();
     int getNombrePions();
     int getJouer();
-    char getSymbole();
     void setJouer(int);
     virtual int choixDeplacement();
     virtual Case* avancerPion(Case*, int);
     virtual int choixPions()=0;
+    char getSymbole();
 protected:
     int jouer;
     int score;
     Plateau* plateau;
     int nombrepions;
     char symbole;
-    Joueur(Plateau*,int=1, char = 65);
-    
+    Joueur(Plateau*,int=1,char=65);
+
 };
 
 #endif	/* JOUEUR_H */

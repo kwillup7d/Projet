@@ -34,12 +34,23 @@ int HumainCartagena::choixDeplacement(){
     char car;
     char pioche = 'p';
     int choix;
+    string tmp;
+    cout << "nombre de a " << cartes.find('a')->second << endl;
+    cout << "nombre de b " << cartes.find('b')->second << endl;
+    cout << "nombre de c " << cartes.find('c')->second << endl;
+    cout << "nombre de d " << cartes.find('d')->second << endl;
+
+
     cout << "Quel symbole choisissez-vous ? (a,b,c,d,p)" << endl;
     cin >> car;
-    while (car!=pioche || (cartes.find(car)->second) == 0){
+    while (car!=pioche && (cartes.find(car)->second) == 0){
         cout << "Quel symbole choisissez-vous ? (a,b,c,d,p)" << endl;
-        cin >> car;
+        cin >> tmp;
+        cout << tmp << endl;
+        car = tmp[0];
+        cout << car << endl;
     }
     choix = (int)car;
     return choix;
 }
+

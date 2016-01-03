@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   RobotCartagena.h
  * Author: Bienvenue
  *
@@ -11,7 +11,7 @@
 
 class RobotCartagena : public JoueurCartagena{
 public:
-    RobotCartagena(Plateau*,int,int=1,char = 65);
+    RobotCartagena(Plateau*,int,int=1, char = 65);
     virtual ~RobotCartagena();
     virtual int choixPions();
     virtual int choixDeplacement();

@@ -1,7 +1,7 @@
-/* 
+/*
  * File:   RobotQuestion.cpp
  * Author: Bienvenue
- * 
+ *
  * Created on 14 décembre 2015, 09:55
  */
 
@@ -21,12 +21,16 @@ RobotQuestion::~RobotQuestion() {
 }
 
 bool RobotQuestion::question(){
-    srand (time(NULL));
+    /*srand (time(NULL));
     int alea = rand() % 2;
-    switch(alea){
-        case 0 : return true;
-        case 1 : return false;
+    bool b(true);
+    cout << alea << endl;
+    if ( alea == 0 ){
+        b = false;
     }
+    return b;
+    */
+    return true;
 }
 
 int RobotQuestion::choixPions(){

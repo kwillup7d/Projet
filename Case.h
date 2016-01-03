@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Case.h
  * Author: Bienvenue
  *
@@ -8,7 +8,7 @@
 #ifndef CASE_H
 #define	CASE_H
 
-static int nbrecases = 0;
+static int nbrecases;
 
 class Case {
 public:

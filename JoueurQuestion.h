@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   JoueurQuestion.h
  * Author: Bienvenue
  *
