@@ -12,7 +12,7 @@
 
 using namespace std;
 
-Joueur::Joueur(Plateau* pla,int n): nombrepions(n), score(0), jouer(0), plateau(pla) {
+Joueur::Joueur(Plateau* pla,int n, char s): nombrepions(n), score(0), jouer(0), plateau(pla), symbole(s) {
     cout << "creation joueur" << endl;
 }
 
