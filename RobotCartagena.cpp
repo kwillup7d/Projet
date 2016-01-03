@@ -12,7 +12,7 @@
 
 using namespace std;
 
-RobotCartagena::RobotCartagena(Plateau* plateau, int nombrecartes, int pions) : JoueurCartagena(plateau, nombrecartes, pions){
+RobotCartagena::RobotCartagena(Plateau* plateau, int nombrecartes, int pions, char symbole) : JoueurCartagena(plateau, nombrecartes, pions, symbole){
     cout << "creation Robotcartagena" << endl;
 }
 
