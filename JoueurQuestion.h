@@ -11,7 +11,7 @@
 
 class JoueurQuestion : public Joueur {
 public:
-    JoueurQuestion(Plateau*, int=1);
+    JoueurQuestion(Plateau*, int=1, char=65);
     virtual ~JoueurQuestion();
     virtual bool question()=0;
     virtual Case* avancerPion(Case*, int);
