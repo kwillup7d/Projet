@@ -1,4 +1,4 @@
-/* 
+/*
  * File:   Humain.h
  * Author: Bienvenue
  *
@@ -11,7 +11,7 @@
 
 class Humain : public Joueur {
 public:
-    Humain(Plateau*, int=1);
+    Humain(Plateau*, int=1, char = 65);
     virtual ~Humain();
     virtual int choixPions();
 private:
