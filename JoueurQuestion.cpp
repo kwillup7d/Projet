@@ -42,6 +42,7 @@ Case* JoueurQuestion::avancerPion(Case* c, int lancer){
                     tmp = plateau->getCase(tmp->getLienCase());
                 }
                 else {
+                    cout << "La case n'est pas libre. Dommaaaage..."<< endl;
                     tmp = plateau->getCase(0);
                 }
             }
@@ -55,6 +56,7 @@ Case* JoueurQuestion::avancerPion(Case* c, int lancer){
                     tmp = plateau->getCase(tmp->getLienCase());
                 }
                 else {
+                    cout << "La case n'est pas libre. Dommaaaage..."<< endl;
                     tmp = plateau->getCase(0);
                 }
             }

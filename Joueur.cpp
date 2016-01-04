@@ -61,6 +61,7 @@ Case* Joueur::avancerPion(Case* c, int lancer){
             }
             else {
                 //Si la case liée n'est pas libre, retour case départ
+                cout << "La case n'est pas libre. Dommaaaage..."<< endl;
                 tmp = plateau->getCase(0);
             }
         }

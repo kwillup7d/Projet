@@ -57,21 +57,21 @@ void Jeu::initialisation(){
     char s(64);
 
     for(int i=0;i<joueurs-robots;i++){
-        cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)" << endl;
+        cout << "Quel style de joueur voulez-vous ? ((n)ormal, (q)uestion, (c)artagena)" << endl;
         cin >> joueur;
         s++;
-        while ( joueur != "normal" && joueur != "question" && joueur != "cartagena" ){
+        while ( joueur != "normal" && joueur != "question" && joueur != "cartagena"&& joueur != "n" && joueur != "c" && joueur != "q" ){
 
-            cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)"<< endl;
+            cout << "Quel style de joueur voulez-vous ? ((n)ormal, (q)uestion, (c)artagena)"<< endl;
             cin >> joueur;
         }
-        if(joueur == "normal"){
+        if(joueur == "normal" || joueur == "n"){
             j = new Humain(&plateau,pions,s);
         }
-        else if(joueur == "question"){
+        else if(joueur == "question" || joueur == "q"){
             j = new HumainQuestion(&plateau,pions,s);
         }
-        else if (joueur == "cartagena"){
+        else {
             j = new HumainCartagena(&plateau, 8, pions,s);
         }
 
@@ -82,18 +82,18 @@ void Jeu::initialisation(){
     }
 
     for(int i=joueurs-robots; i<joueurs; i++){
-        cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)" << endl;
+        cout << "Quel style de joueur voulez-vous ? ((n)ormal, (q)uestion, (c)artagena)" << endl;
         cin >> joueur;
         ++s;
-         while ( joueur != "normal" && joueur != "question" && joueur != "cartagena" ){
+         while ( joueur != "normal" && joueur != "question" && joueur != "cartagena" && joueur != "n" && joueur != "q" && joueur != "c" ){
 
-            cout << "Quel style de joueur voulez-vous ? (normal, question, cartagena)"<< endl;
+            cout << "Quel style de joueur voulez-vous ? ((n)ormal, (q)uestion, (c)artagena)"<< endl;
             cin >> joueur;
         }
-        if(joueur == "normal"){
+        if(joueur == "normal"|| joueur == "n"){
             j = new Robot(&plateau,pions,s);
         }
-        else if(joueur == "question"){
+        else if(joueur == "question"|| joueur == "q"){
             j = new RobotQuestion(&plateau,pions,s);
         }
         else {
@@ -170,8 +170,7 @@ void Jeu::tourJoueur(Joueur* j){
 
         string k;
         afficher();
-        cout << "Entrez un mot pour continuer"<< endl;
-        cin >> k;
+        getline(cin,k);
 
     }
 }
