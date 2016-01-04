@@ -30,3 +30,5 @@ int Robot::choixPions(){
         return (rand()%nombrepions + 1);
     }
 }
+
+

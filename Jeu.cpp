@@ -5,6 +5,8 @@
  * Created on 7 décembre 2015, 17:48
  */
 
+
+
 #include "Jeu.h"
 #include "Humain.h"
 #include "Robot.h"
@@ -14,6 +16,8 @@
 #include "RobotCartagena.h"
 #include <iostream>
 #include <string>
+
+
 
 Jeu::Jeu(int cases) : plateau(cases){
 }
@@ -128,7 +132,7 @@ void Jeu::tourJoueur(Joueur* j){
     pair<Joueur*,int> pairetmp;
 
 
-    cout << "debut tour" << endl;
+    cout << "debut du tour." << endl;
     Case* ct;
     Case* tmp;
     //on rajoute un au compteur de jouer du joueur
@@ -184,7 +188,7 @@ void Jeu::jouer(){
             tourJoueur(*it);
             //si le joueur courant a gagné, le jeu est fini
             if(joueurAGagne(*it)){
-                cout << "Un joueur a gagné" << endl;
+                cout << "Le joueur a gagne." << endl;
                 jeufini = true;
             }
             it++;
@@ -228,6 +232,8 @@ void Jeu::afficher(){
 
 
 }
+
+
 
 
 

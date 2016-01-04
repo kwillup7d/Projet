@@ -14,10 +14,10 @@
 #include "JoueurQuestion.h"
 #include "JoueurCartagena.h"
 #include "Plateau.h"
+#include <string>
 
 using namespace std;
 
-//template <class T>
 class Jeu {
 public:
     Jeu(int);
@@ -29,10 +29,12 @@ public:
     bool joueurAGagne(Joueur*);
     void afficher ();
 
+
 protected:
     Plateau plateau;
     list<Joueur*> Tabjoueur;
     map<pair<Joueur*,int>,Case*> placementpions;
 };
+
 
 #endif	/* JEU_H */

@@ -8,6 +8,9 @@
 #ifndef JOUEUR_H
 #define	JOUEUR_H
 #include "plateau.h"
+#include <string>
+
+using namespace std;
 
 class Joueur {
 public:
@@ -20,6 +23,7 @@ public:
     virtual Case* avancerPion(Case*, int);
     virtual int choixPions()=0;
     char getSymbole();
+
 protected:
     int jouer;
     int score;

@@ -30,18 +30,13 @@ Case* JoueurQuestion::avancerPion(Case* c, int lancer){
     // On vérifie si la case est libre, si elle ne l'est pas, on retourne au départ
     if((plateau->getCase(numtmp)->caseEstLibre())){
         //si elle est libre, on va à la case demandée
-        cout << numtmp << endl;
-        cout << plateau->getCase(numtmp)<<endl;
 
-        cout << plateau->getCase(0)<< endl;
         tmp = plateau->getCase(numtmp);
-        cout << tmp << endl;
-        cout << tmp->getNumeroCase() << endl;
 
         //on vérifie si le joueur a bon à la question
         if(question()){
-            //si on est sur une case 'echelle', on monte
-            if(tmp->getLienCase() > 0){
+            //si on est sur une case 'échelle' on est transféré
+            if(numtmp - tmp->getLienCase() > 0){
                 //si la case n'est pas libre, on retourne au départ
                 if(plateau->getCase(tmp->getLienCase())->caseEstLibre()){
                     tmp = plateau->getCase(tmp->getLienCase());
@@ -53,7 +48,7 @@ Case* JoueurQuestion::avancerPion(Case* c, int lancer){
         }
         //si le joueur a tort
         else {
-           /* //si le joueur est sur une case 'serpent', qui ne peut pas être la case départ, on descend
+            //si le joueur est sur une case 'serpent', qui ne peut pas être la case départ, on descend
             if(tmp->getLienCase() < tmp->getNumeroCase() && tmp->getLienCase()>0){
                 //si la case n'est pas libre, on retourne au départ
                 if(plateau->getCase(tmp->getLienCase())->caseEstLibre()){
@@ -64,15 +59,17 @@ Case* JoueurQuestion::avancerPion(Case* c, int lancer){
                 }
             }
             else {
-             */   //sinon, on retourne à la case initiale
+                //sinon, on retourne à la case initiale
                 tmp = c;
 
             }
+    }
     }else{
         tmp = plateau->getCase(0);
     }
 
     jouer = jouer - 1 + tmp->getJouer();
     return tmp;
+
 }
 

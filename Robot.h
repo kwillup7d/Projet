@@ -15,7 +15,7 @@ public:
     virtual ~Robot();
     virtual int choixPions();
 private:
-
+    string nom;
 };
 
 #endif	/* ROBOT_H */

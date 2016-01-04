@@ -25,33 +25,34 @@ bool HumainQuestion::question(){
     int a = rand() % 10;
     int b = 1 + rand() % 10;
     int c = rand() % 4;
-    int result, reponse;
+    bool k;
 
     switch(c){
         case 0 : {
-            cout << "Quel est le résultat de bih " << a << "+" << b << endl;
-            result = a+b;
+            cout << "Quel est le résultat de " << a << "+" << b << " ?" << endl;
+            k = reponse(a+b);
             break;
         }
         case 1 : {
-            cout << "Quel est le résultat de bah " << a << "*" << b << endl;
-            result = a*b;
+            cout << "Quel est le résultat de " << a << "*" << b << " ?"<< endl;
+            k = reponse(a*b);
             break;
         }
         case 2 : {
-            cout << "Quel est le résultat de boh " << a << "/" << b << endl;
+            cout << "Quel est le résultat de " << a << "/" << b << " au centieme pres ?" << endl;
 
-            result = a/b;
+            float d = (float) a;
+            k = reponse(d/b);
             break;
         }
         case 3 : {
-            cout << "Quel est le résultat de buh " << a << "%" << b << endl;
-            result = a%b;
+            cout << "Quel est le résultat de " << a << "%" << b << " ?"<< endl;
+            k = reponse(a%b);
             break;
         }
     }
-    cin >> reponse;
-    return reponse==result;
+
+    return k;
 }
 
 int HumainQuestion::choixPions(){
@@ -66,3 +67,15 @@ int HumainQuestion::choixPions(){
     }
 }
 
+bool HumainQuestion::reponse ( int i ){
+    int reponse;
+    cin >> reponse;
+    return (reponse == i);
+}
+
+bool HumainQuestion::reponse( float i){
+    float reponse;
+    cin >> reponse;
+    return ( max(reponse,i)-min(reponse,i) < 0.02 );
+
+}

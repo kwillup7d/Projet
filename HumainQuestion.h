@@ -15,6 +15,8 @@ public:
     virtual ~HumainQuestion();
     virtual bool question();
     virtual int choixPions();
+    bool reponse (int);
+    bool reponse (float);
 private:
 
 };

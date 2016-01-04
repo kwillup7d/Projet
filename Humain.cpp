@@ -29,3 +29,6 @@ int Humain::choixPions(){
         return choix;
     }
 }
+
+
+

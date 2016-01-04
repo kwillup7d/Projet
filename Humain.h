@@ -8,14 +8,20 @@
 #ifndef HUMAIN_H
 #define	HUMAIN_H
 #include "Joueur.h"
+#include <string>
+
+
+using namespace std;
 
 class Humain : public Joueur {
 public:
     Humain(Plateau*, int=1, char = 65);
     virtual ~Humain();
     virtual int choixPions();
-private:
 
+
+private:
+    string nom;
 };
 
 #endif	/* HUMAIN_H */
