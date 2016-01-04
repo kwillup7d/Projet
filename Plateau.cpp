@@ -56,7 +56,7 @@ Plateau::Plateau(int n) : nombrecases(n), cases(new Case*[n]){
         }
         else if(i%17 == 0){
             //creation des cases 'echelle' qui envoie le pion sur une case entre i+7 et nombrecases-2
-            aleatoire = i + 7 + rand()%(nombrecases-9-i);
+            aleatoire = min(i + 7 + rand()%(nombrecases-9-i),nombrecases - 2);
             c = new Case(car,0,0,1,aleatoire);
         }
         else {

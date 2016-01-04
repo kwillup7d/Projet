@@ -10,4 +10,4 @@ all : $(OBJS) main.cpp
 
 
 clean :
-	rm -rf *.o
+	rm -rf *.o game.exe
